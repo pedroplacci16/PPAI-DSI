@@ -64,7 +64,6 @@ public class Resena {
     }
 
     public boolean sosSommelierVerificado() {
-        //Despues de modelar t0do lo de sommelier, tengo que poner la verificacion esta
-        return true;
+        return this.esPremium;
     }
 }

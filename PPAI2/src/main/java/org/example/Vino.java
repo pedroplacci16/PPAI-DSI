@@ -106,15 +106,21 @@ public class Vino {
     }
 
 
-    public ArrayList<Double> buscarPuntajeSommelierEnPeriodo(Date fechaDesde, Date fechaHasta) {
+    public double buscarPuntajeSommelierEnPeriodo(Date fechaDesde, Date fechaHasta) {
         ArrayList<Double> puntajes = new ArrayList<Double>();
         for (Resena resena : resena){
             if(resena.sosDePeriodo(fechaDesde, fechaHasta)){
                 if(resena.sosSommelierVerificado()){
                     puntajes.add(resena.getPuntaje());
-                }
+                } else { puntajes.add((double) 0);}
             }
         }
-        return puntajes;
+        // Calculamos el promedio
+        double sum = 0;
+        for (Double puntaje : puntajes) {
+            sum += puntaje;
+        }
+        return sum / puntajes.size();
     }
+
 }

@@ -1,8 +1,6 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 
 public class GestorGenerarRanking {
@@ -51,11 +49,19 @@ public class GestorGenerarRanking {
         Bd bd = new Bd();
         ArrayList<Vino> vinos = bd.vinos;
         System.out.println(bd.vinos.get(0).getPrecio());
+        Map<String, Double> promedios = new HashMap<>();
+
         for (Vino vino : vinos) {
-            // Aquí puedes trabajar con cada objeto 'vino'
-            System.out.println(vino.getNombre());
-            vino.buscarPuntajeSommelierEnPeriodo(gestor.fechaDesde, gestor.fechaHasta);
+            // Calculamos el puntaje promedio del vino en el período especificado
+            double promedio = vino.buscarPuntajeSommelierEnPeriodo(gestor.fechaDesde, gestor.fechaHasta);
+            // Guardamos el puntaje promedio en el mapa con el nombre del vino como clave
+            if(promedio!=0) {
+                promedios.put(vino.getNombre(), promedio);
+            }
         }
+
+        // Ahora puedes ordenar el mapa 'promedios' por valor (puntaje promedio) y mostrarlo
+                promedios.entrySet().stream().sorted(Map.Entry.<String, Double>comparingByValue().reversed()).forEach(entry -> System.out.println("Vino: " + entry.getKey() + ", Puntaje promedio: " + entry.getValue()));
 
 
 
