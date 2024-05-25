@@ -1,6 +1,7 @@
 package org.example;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,9 +14,9 @@ public class Vino {
     private Bodega bodega;
     private List<Maridaje> maridajes;
     private List<Varietal> varietales;
-    private List<Resena> resena;
+    private ArrayList<Resena> resena;
 
-    public Vino(String nombre, double precio, double notaCata, Date anada, URI imagen, Bodega bodega, List<Maridaje> maridajes, List<Varietal> varietales, List<Resena> resena) {
+    public Vino(String nombre, double precio, double notaCata, Date anada, URI imagen, Bodega bodega, List<Maridaje> maridajes, List<Varietal> varietales, ArrayList<Resena> resena) {
         this.nombre = nombre;
         this.precio = precio;
         this.notaCata = notaCata;
@@ -31,7 +32,7 @@ public class Vino {
         return resena;
     }
 
-    public void setResena(List<Resena> resena) {
+    public void setResena(ArrayList<Resena> resena) {
         this.resena = resena;
     }
 
@@ -105,4 +106,15 @@ public class Vino {
     }
 
 
+    public ArrayList<Double> buscarPuntajeSommelierEnPeriodo(Date fechaDesde, Date fechaHasta) {
+        ArrayList<Double> puntajes = new ArrayList<Double>();
+        for (Resena resena : resena){
+            if(resena.sosDePeriodo(fechaDesde, fechaHasta)){
+                if(resena.sosSommelierVerificado()){
+                    puntajes.add(resena.getPuntaje());
+                }
+            }
+        }
+        return puntajes;
+    }
 }

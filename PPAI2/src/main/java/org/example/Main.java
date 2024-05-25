@@ -13,8 +13,8 @@ public class Main {
             // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
             System.out.println("i = " + i);
         }
-
+        GestorGenerarRanking gestor = new GestorGenerarRanking();
         PantallaGenerarRanking pantalla = new PantallaGenerarRanking();
-        pantalla.opcGenerarRenkingVinos();
+        pantalla.opcGenerarRankingVinos(gestor, pantalla);
     }
 }

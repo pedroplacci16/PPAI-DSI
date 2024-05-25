@@ -57,4 +57,14 @@ public class Resena {
     public void setVino(Vino vino) {
         this.vino = vino;
     }
+
+    public boolean sosDePeriodo(Date fechaDesde, Date fechaHasta) {
+        // Comprobar si this.fechaResena está en el rango [fechaDesde, fechaHasta]
+        return !this.fechaResena.before(fechaDesde) && !this.fechaResena.after(fechaHasta);
+    }
+
+    public boolean sosSommelierVerificado() {
+        //Despues de modelar t0do lo de sommelier, tengo que poner la verificacion esta
+        return true;
+    }
 }
