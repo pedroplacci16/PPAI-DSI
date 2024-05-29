@@ -13,10 +13,10 @@ public class Vino {
     private URI imagen;
     private Bodega bodega;
     private List<Maridaje> maridajes;
-    private List<Varietal> varietales;
+    private Varietal varietales;
     private ArrayList<Resena> resena;
 
-    public Vino(String nombre, double precio, double notaCata, Date anada, URI imagen, Bodega bodega, List<Maridaje> maridajes, List<Varietal> varietales, ArrayList<Resena> resena) {
+    public Vino(String nombre, double precio, double notaCata, Date anada, URI imagen, Bodega bodega, List<Maridaje> maridajes, Varietal varietales, ArrayList<Resena> resena) {
         this.nombre = nombre;
         this.precio = precio;
         this.notaCata = notaCata;
@@ -44,7 +44,7 @@ public class Vino {
         return maridajes;
     }
 
-    public List<Varietal> getVarietales() {
+    public Varietal getVarietales() {
         return varietales;
     }
 
@@ -56,7 +56,7 @@ public class Vino {
         this.maridajes = maridajes;
     }
 
-    public void setVarietales(List<Varietal> varietales) {
+    public void setVarietales(Varietal varietales) {
         this.varietales = varietales;
     }
 
@@ -123,4 +123,35 @@ public class Vino {
         return sum / puntajes.size();
     }
 
+
+    public boolean tenesResenaEnPeriodo(Date fechaDesde, Date fechaHasta) {
+        if (resena == null || resena.isEmpty()) {
+            return false; //no hay resenas
+        }
+
+        for (Resena resena : resena) {
+            if (resena.sosDePeriodo(fechaDesde, fechaHasta)) {
+                if(resena.sosSommelierVerificado()) {
+                    return true;//si hay resenas en periodo y son de sommelier
+                }
+            }
+        }
+        return false; // no hay resenas en periodo
+    }
+
+
+    public String[] buscarInfoBodega() {
+        String[] infoBodega = new String[3];
+        infoBodega[0] = bodega.getNombre();
+        String[] infoRegionPais = new String[2];
+        infoRegionPais = bodega.buscarRegionYPais();
+        infoBodega[1] = infoRegionPais[0];
+        infoBodega[2] = infoRegionPais[1];
+        return infoBodega;
+
+    }
+
+    public String buscarVarietal() {
+        return varietales.getDescripcion();
+    }
 }

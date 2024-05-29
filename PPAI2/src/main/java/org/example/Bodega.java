@@ -10,10 +10,10 @@ public class Bodega {
 
     //Revisar que es periodoActualizacion? Si es un int, un date o que es
     private int periodoActualizacion;
-    private RegionVitivinicola region;
+    private Region region;
     private List<NovedadEvento> novedad;
 
-    public Bodega(String coordenadasUbicacion, String descripcion, String historia, String nombre, int periodoActualizacion, RegionVitivinicola region, List<NovedadEvento> novedad) {
+    public Bodega(String coordenadasUbicacion, String descripcion, String historia, String nombre, int periodoActualizacion, Region region, List<NovedadEvento> novedad) {
         this.coordenadasUbicacion = coordenadasUbicacion;
         this.descripcion = descripcion;
         this.historia = historia;
@@ -63,11 +63,11 @@ public class Bodega {
         this.periodoActualizacion = periodoActualizacion;
     }
 
-    public RegionVitivinicola getRegion() {
+    public Region getRegion() {
         return region;
     }
 
-    public void setRegion(RegionVitivinicola region) {
+    public void setRegion(Region region) {
         this.region = region;
     }
 
@@ -77,5 +77,13 @@ public class Bodega {
 
     public void setNovedad(List<NovedadEvento> novedad) {
         this.novedad = novedad;
+    }
+
+    public String[] buscarRegionYPais() {
+        String[] infoRegion = new String[2];
+        infoRegion[0] = region.getNombre();
+        infoRegion[1] = region.buscarPais();
+        return infoRegion;
+
     }
 }
