@@ -6,7 +6,9 @@ import java.util.*;
 public class GestorGenerarRanking {
     private Date fechaDesde;
     private Date fechaHasta;
-    private List<Map.Entry<String, Double>> vinosOrdenados;
+    //private List<Map.Entry<String, Double>> vinosOrdenados;
+
+    private HashMap<String, HashMap<String, Object>> vinosOrdenados;
 
     private HashMap<String, HashMap<String, Object>> vinosInfo = new HashMap<>();
 
@@ -46,6 +48,7 @@ public class GestorGenerarRanking {
         //Aca tengo que cambiar este metodo para que quede como en el diagrama
         //gestor.buscarPuntajeSommelierEnPeriodo(pantalla, gestor, gestor.fechaDesde, gestor.fechaHasta);
         gestor.buscarVinosConResenasEnPeriodo(pantalla, gestor, fechaDesde, fechaHasta);
+        gestor.imprimirInformacionVinos();
     }
 
 
@@ -73,28 +76,8 @@ public class GestorGenerarRanking {
         }
 
         //  Ordenar los vinos según la calificación de sommeliers.
-        ordenarVinosPorPromedio(pantalla, gestor,promedios);
-
-
+        ordenarVinosPorPromedio(pantalla, gestor);
     }
-
-    private void ordenarVinosPorPromedio(PantallaGenerarRanking pantalla, GestorGenerarRanking gestor, Map<String, Double> promedios) {
-        //convertimos el mapa a una lista
-        vinosOrdenados = new ArrayList<>(promedios.entrySet());
-
-        // Ordenamos la lista de vinos por puntaje promedio
-        Collections.sort(vinosOrdenados, Map.Entry.<String, Double>comparingByValue().reversed());
-
-        for (Map.Entry<String, Double> entry : vinosOrdenados) {
-            String nombreVino = entry.getKey();
-            double promedioSommelier = entry.getValue();
-            System.out.println("Nombre del vino: " + nombreVino + ", Puntaje promedio del sommelier: " + promedioSommelier);
-        }
-
-        //BORRAR ESTO DESPUES
-        gestor.imprimirInformacionVinos();
-    }
-
     private void buscarVinosConResenasEnPeriodo(PantallaGenerarRanking pantalla, GestorGenerarRanking gestor, Date fechaDesde, Date fechaHasta) {
         System.out.println("Buscando vinos con reseñas en el período especificado...");
         Bd bd = new Bd();
@@ -109,6 +92,7 @@ public class GestorGenerarRanking {
                 String nombreRegion = infoBodega[1];
                 String nombrePais = infoBodega[2];
                 String descripcionVarietal = vino.buscarVarietal();
+                double puntajePromedio = 5;
 
                 HashMap<String, Object> info = new HashMap<>();
                 info.put("precio", precioVino);
@@ -116,7 +100,7 @@ public class GestorGenerarRanking {
                 info.put("nombreRegion", nombreRegion);
                 info.put("nombrePais", nombrePais);
                 info.put("descripcionVarietal", descripcionVarietal);
-
+                info.put("puntajePromedio", puntajePromedio);
                 vinosInfo.put(nombreVino, info);
             }
         }
@@ -125,7 +109,7 @@ public class GestorGenerarRanking {
 
     //ESTE METODO NO VA, ES SOLO PARA MOSTRAR COMO SE OBTIENEN LOS DATOS DEL HASHMAP
     private void imprimirInformacionVinos() {
-        for (Map.Entry<String, HashMap<String, Object>> entry : vinosInfo.entrySet()) {
+        for (Map.Entry<String, HashMap<String, Object>> entry : vinosOrdenados.entrySet()) {
             String nombreVino = entry.getKey();
             HashMap<String, Object> info = entry.getValue();
 
@@ -145,6 +129,25 @@ public class GestorGenerarRanking {
             System.out.println("Descripcion Varietal: " + descripcionVarietal);
             System.out.println("Puntaje promedio: " + puntaje);
             System.out.println("------------------------------------------------------------");
+        }
+
+    }
+    public void ordenarVinosPorPromedio(PantallaGenerarRanking pantalla, GestorGenerarRanking gestor) {
+        List<Map.Entry<String, HashMap<String, Object>>> lista = new LinkedList<>(vinosInfo.entrySet());
+
+        // Ordena la lista basada en el valor de 'puntajePromedio'
+        Collections.sort(lista, new Comparator<Map.Entry<String, HashMap<String, Object>>>() {
+            public int compare(Map.Entry<String, HashMap<String, Object>> o1, Map.Entry<String, HashMap<String, Object>> o2) {
+                double puntaje1 = (double) o1.getValue().get("puntajePromedio");
+                double puntaje2 = (double) o2.getValue().get("puntajePromedio");
+                return Double.compare(puntaje2, puntaje1);
+            }
+        });
+
+        // Inserta los datos de la lista al nuevo HashMap
+        vinosOrdenados = new LinkedHashMap<>();
+        for (Map.Entry<String, HashMap<String, Object>> entry : lista) {
+            vinosOrdenados.put(entry.getKey(), entry.getValue());
         }
     }
 
