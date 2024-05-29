@@ -2,6 +2,12 @@ package org.example;
 
 import java.util.*;
 
+import java.util.Map.Entry;
+
+import java.io.FileOutputStream;
+import java.util.*;
+
+
 
 public class GestorGenerarRanking {
     private Date fechaDesde;
@@ -49,6 +55,8 @@ public class GestorGenerarRanking {
         //gestor.buscarPuntajeSommelierEnPeriodo(pantalla, gestor, gestor.fechaDesde, gestor.fechaHasta);
         gestor.buscarVinosConResenasEnPeriodo(pantalla, gestor, fechaDesde, fechaHasta);
         gestor.imprimirInformacionVinos();
+
+        gestor.finCu(pantalla);
     }
 
 
@@ -133,7 +141,7 @@ public class GestorGenerarRanking {
 
     }
     public void ordenarVinosPorPromedio(PantallaGenerarRanking pantalla, GestorGenerarRanking gestor) {
-        List<Map.Entry<String, HashMap<String, Object>>> lista = new LinkedList<>(vinosInfo.entrySet());
+        List<Map.Entry<String, HashMap<String, Object>>> lista = new ArrayList<>(vinosInfo.entrySet());
 
         // Ordena la lista basada en el valor de 'puntajePromedio'
         Collections.sort(lista, new Comparator<Map.Entry<String, HashMap<String, Object>>>() {
@@ -149,8 +157,14 @@ public class GestorGenerarRanking {
         for (Map.Entry<String, HashMap<String, Object>> entry : lista) {
             vinosOrdenados.put(entry.getKey(), entry.getValue());
         }
+
+        InterfazExcel.exportarExcel(lista);
+
     }
 
+    public void finCu(PantallaGenerarRanking pantalla) {
+        pantalla.cerrarVentana();
+    }
 
 
 }

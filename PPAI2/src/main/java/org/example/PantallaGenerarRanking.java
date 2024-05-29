@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import java.util.Date;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import com.toedter.calendar.JDateChooser;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -27,6 +29,22 @@ public class PantallaGenerarRanking {
 
         dateChooserDesde = new JDateChooser();
         dateChooserHasta = new JDateChooser();
+
+        JLabel fondo = new JLabel(new ImageIcon("PPAI2/src/main/java/imagen/FondoBonVino.png"));
+        ventana.setContentPane(fondo);
+        fondo.setLayout(new FlowLayout());
+
+
+        JPanel panelContenido = new JPanel();
+        panelContenido.setLayout(new FlowLayout());
+
+        fondo.add(dateChooserDesde);
+        fondo.add(dateChooserHasta);
+
+        fondo.add(panelContenido, BorderLayout.CENTER);
+
+        ventana.setVisible(true);
+
     }
 
     public void opcGenerarRankingVinos(GestorGenerarRanking gestor, PantallaGenerarRanking pantalla){
@@ -35,30 +53,52 @@ public class PantallaGenerarRanking {
 
     public void habilitarVentana(GestorGenerarRanking gestor, PantallaGenerarRanking pantalla) {
         JLabel etiqueta = new JLabel("Generar ranking de vinos, elija las fechas a filtrar:");
-        etiqueta.setFont(pantalla.fuenteGrande); // Aplica la fuente grande a la etiqueta
-        pantalla.ventana.add(etiqueta);
-        pantalla.ventana.setVisible(true);
+        etiqueta.setFont(fuenteGrande);
+        etiqueta.setForeground(Color.WHITE);
+        etiqueta.setHorizontalAlignment(SwingConstants.CENTER);
+        etiqueta.setVerticalAlignment(SwingConstants.CENTER);
+
+        // Creamos un contenedor para la ventana
+        Container contenedor = ventana.getContentPane();
+
+        // Configuramos el layout como GridBagLayout
+        contenedor.setLayout(new GridBagLayout());
+
+        // Creamos un GridBagConstraints para configurar el posicionamiento de la etiqueta
+        GridBagConstraints gbcEtiqueta = new GridBagConstraints();
+        gbcEtiqueta.gridx = 0;
+        gbcEtiqueta.gridy = 0;
+        gbcEtiqueta.gridwidth = GridBagConstraints.REMAINDER;
+        gbcEtiqueta.anchor = GridBagConstraints.CENTER;
+        gbcEtiqueta.insets = new Insets(100, 0, 50, 0);
+
+        // Agregamos la etiqueta al contenedor con los GridBagConstraints
+        contenedor.add(etiqueta, gbcEtiqueta);
+
+        // Hacemos visible la ventana
+        ventana.pack();
+        ventana.setLocationRelativeTo(null);
+        ventana.setVisible(true);
         gestor.opcGenerarRankingVinos(this, gestor);
     }
 
-    public void solicitarSeleccionFechas(GestorGenerarRanking gestor, PantallaGenerarRanking pantalla){
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+    public void solicitarSeleccionFechas(GestorGenerarRanking gestor, PantallaGenerarRanking pantalla) {
+        JPanel panel = new JPanel(new GridLayout(3, 1, 0, 10));
 
         JLabel labelDesde = new JLabel("Fecha desde:");
-        labelDesde.setFont(pantalla.fuenteGrande); // Aplica la fuente grande al label
+        labelDesde.setFont(pantalla.fuenteGrande);
         panel.add(labelDesde);
         pantalla.dateChooserDesde.setFont(pantalla.fuenteGrande);
         panel.add(pantalla.dateChooserDesde);
 
         JLabel labelHasta = new JLabel("Fecha hasta:");
-        labelHasta.setFont(pantalla.fuenteGrande); // Aplica la fuente grande al label
+        labelHasta.setFont(pantalla.fuenteGrande);
         panel.add(labelHasta);
         pantalla.dateChooserHasta.setFont(pantalla.fuenteGrande);
         panel.add(pantalla.dateChooserHasta);
 
         JButton btnFiltrar = new JButton("Filtrar");
-        btnFiltrar.setFont(pantalla.fuenteGrande); // Aplica la fuente grande al botón
+        btnFiltrar.setFont(pantalla.fuenteGrande);
         btnFiltrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -69,7 +109,23 @@ public class PantallaGenerarRanking {
         });
         panel.add(btnFiltrar);
 
-        pantalla.ventana.add(panel);
+        // Creamos un contenedor para la ventana
+        Container contenedor = pantalla.ventana.getContentPane();
+
+        // Configuramos el layout como GridBagLayout
+        contenedor.setLayout(new GridBagLayout());
+
+        // Creamos un GridBagConstraints para configurar el posicionamiento del panel
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.insets = new Insets(130, 450, 0, 0);
+
+        // Agregamos el panel al contenedor con los GridBagConstraints
+        contenedor.add(panel, gbc);
+
+        // Hacemos visible la ventana
         pantalla.ventana.setVisible(true);
     }
     public void solicitarSeleccionTipoResena(PantallaGenerarRanking pantalla, GestorGenerarRanking gestor){
@@ -179,6 +235,10 @@ public class PantallaGenerarRanking {
         pantalla.ventana.repaint();
         pantalla.ventana.add(panel);
         pantalla.ventana.setVisible(true);
+    }
+
+    public void cerrarVentana() {
+        ventana.dispose();
     }
 }
 
