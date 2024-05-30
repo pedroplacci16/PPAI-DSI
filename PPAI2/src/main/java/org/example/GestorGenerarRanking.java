@@ -15,6 +15,7 @@ public class GestorGenerarRanking {
         pantalla.solicitarSeleccionFechas(gestor, pantalla);
 
     }
+
     public void tomarSeleccionFechas(PantallaGenerarRanking pantalla, GestorGenerarRanking gestor, Date fechaDesde, Date fechaHasta){
         System.out.println(fechaHasta.toString());
         System.out.println(fechaDesde.toString());
@@ -23,14 +24,17 @@ public class GestorGenerarRanking {
             gestor.fechaHasta = fechaHasta;
             pantalla.solicitarSeleccionTipoResena(pantalla,gestor);
         } else {
-            //Falta programar alternativa (no es parte del CU)
-            pantalla.error("Estan mal las fechas", false);
+            pantalla.error("Fechas incorrectas, Ingrese las fechas nuevamente", false);
         }
 
     }
+
+
     public boolean validarPeriodo(Date fechaDesde, Date fechaHasta){
         return fechaDesde.before(fechaHasta);
     }
+
+
     public void tomarSeleccionTipoResena(PantallaGenerarRanking pantalla, GestorGenerarRanking gestor, String tipo){
         System.out.println(tipo);
         if(tipo == "Resenas sommelier") {
@@ -42,6 +46,7 @@ public class GestorGenerarRanking {
         }
     }
 
+
     public void tomarSeleccionFormaVisualizacion(PantallaGenerarRanking pantalla, GestorGenerarRanking gestor, String forma) {
         System.out.println(forma);
         if(forma == "Excel") {
@@ -52,6 +57,7 @@ public class GestorGenerarRanking {
             //
         }
     }
+
 
     public void tomarConfirmacionReporte(PantallaGenerarRanking pantalla, GestorGenerarRanking gestor) {
         System.out.println("Correcto");
@@ -89,6 +95,8 @@ public class GestorGenerarRanking {
 
 
     }
+
+
     private void buscarVinosConResenasEnPeriodo(PantallaGenerarRanking pantalla, GestorGenerarRanking gestor) {
         System.out.println("Buscando vinos con reseñas en el período especificado...");
         Bd bd = new Bd();
@@ -121,6 +129,7 @@ public class GestorGenerarRanking {
         gestor.buscarPuntajeSommelierEnPeriodo(pantalla, gestor);
     }
 
+
     public void ordenarVinosPorPromedio() {
         listaOrdenados = new ArrayList<>(vinosInfo.entrySet());
 
@@ -132,15 +141,11 @@ public class GestorGenerarRanking {
                 return Double.compare(puntaje2, puntaje1);
             }
         });
-
-
-
-
     }
+
 
     public void finCu(PantallaGenerarRanking pantalla) {
         pantalla.cerrarVentana();
     }
-
 
 }

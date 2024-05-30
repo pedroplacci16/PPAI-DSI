@@ -45,12 +45,12 @@ public class Bd {
         regionList.add(region3);
         Provincia provincia = new Provincia("Mendoza", regionList);
 
-        // Crear más objetos Region con datos inventados
+        // Crear más objetos Region
         Region region4 = new Region("Ciudad4", "Capital3");
         Region region5 = new Region("Ciudad5", "Capital4");
         Region region6 = new Region("Ciudad6", "Capital5");
 
-        // Asegúrate de que regionList2 ha sido inicializado
+
         ArrayList<Region> regionList2 = new ArrayList<>();
 
         // Añadir los nuevos objetos Region al ArrayList regionList2
