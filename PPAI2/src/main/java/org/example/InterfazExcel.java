@@ -16,7 +16,7 @@ public class InterfazExcel {
         Sheet hoja = libro.createSheet("Top 10 Vinos");
 
         // Encabezados de columnas
-        String[] encabezadoColumnas = {"Nombre", "Calificación Sommelier", "Calificación General", "Precio Sugerido", "Bodega", "Varietal", "Región", "País"};
+        String[] encabezadoColumnas = {"Nombre", "Calificación Sommelier", "Precio Sugerido", "Bodega", "Varietal", "Región", "País"};
 
         // Crear el encabezado
         Row encabezado = hoja.createRow(0);
@@ -39,28 +39,27 @@ public class InterfazExcel {
             if (info.get("puntajePromedio") != null) {
                 row.createCell(1).setCellValue((double) info.get("puntajePromedio"));
             }
-            if (info.get("calificacionGeneral") != null) {
-                row.createCell(2).setCellValue((double) info.get("calificacionGeneral"));
-            }
             if (info.get("precio") != null) {
-                row.createCell(3).setCellValue((double) info.get("precio"));
+                row.createCell(2).setCellValue((double) info.get("precio"));
             }
             if (info.get("nombreBodega") != null) {
-                row.createCell(4).setCellValue((String) info.get("nombreBodega"));
+                row.createCell(3).setCellValue((String) info.get("nombreBodega"));
             }
             if (info.get("descripcionVarietal") != null) {
-                row.createCell(5).setCellValue((String) info.get("descripcionVarietal"));
+                // Convertir el array de Strings en un solo String
+                String[] varietales = (String[]) info.get("descripcionVarietal");
+                String varietalesStr = String.join(", ", varietales);
+                row.createCell(4).setCellValue(varietalesStr);
             }
             if (info.get("nombreRegion") != null) {
-                row.createCell(6).setCellValue((String) info.get("nombreRegion"));
+                row.createCell(5).setCellValue((String) info.get("nombreRegion"));
             }
             if (info.get("nombrePais") != null) {
-                row.createCell(7).setCellValue((String) info.get("nombrePais"));
+                row.createCell(6).setCellValue((String) info.get("nombrePais"));
             }
 
             contador++;
         }
-
 
         try {
             FileOutputStream archivo = new FileOutputStream("Top10Vinos.xlsx");
@@ -71,5 +70,6 @@ public class InterfazExcel {
             System.err.println("Error al generar el archivo Excel: " + e.getMessage());
         }
     }
+
 
 }

@@ -138,21 +138,21 @@ public class Bd {
         resenas.add(resenasVino15.get(0));
 
         // Crear objetos de Vino con el nuevo constructor
-        vinos.add(new Vino("Nombre Vino1", 200.0, 4.5, new Date(), URI.create("http://imagen1.com"), bodegas.get(0), List.of(maridajes.get(0)), varietales.get(0), resenasVino1));
-        vinos.add(new Vino("Nombre Vino2", 100.0, 3.5, new Date(), URI.create("http://imagen2.com"), bodegas.get(0), List.of(maridajes.get(1)), varietales.get(1), resenasVino2));
-        vinos.add(new Vino("Nombre Vino3", 300.0, 4.6, new Date(), URI.create("http://imagen3.com"), bodegas.get(0), List.of(maridajes.get(2)), varietales.get(2), resenasVino3));
-        vinos.add(new Vino("Nombre Vino4", 400.0, 4.7, new Date(), URI.create("http://imagen4.com"), bodegas.get(0), List.of(maridajes.get(2)), varietales.get(2), resenasVino4));
-        vinos.add(new Vino("Nombre Vino5", 500.0, 4.9, new Date(), URI.create("http://imagen5.com"), bodegas.get(0), List.of(maridajes.get(2)), varietales.get(2), resenasVino5));
-        vinos.add(new Vino("Nombre Vino6", 600.0, 4.0, new Date(), URI.create("http://imagen6.com"), bodegas.get(0), List.of(maridajes.get(2)), varietales.get(2), resenasVino6));
-        vinos.add(new Vino("Nombre Vino7", 700.0, 3.9, new Date(), URI.create("http://imagen7.com"), bodegas.get(0), List.of(maridajes.get(2)), varietales.get(2), resenasVino7));
-        vinos.add(new Vino("Nombre Vino8", 800.0, 5.0, new Date(), URI.create("http://imagen8.com"), bodegas.get(0), List.of(maridajes.get(2)), varietales.get(2), resenasVino8));
-        vinos.add(new Vino("Nombre Vino9", 900.0, 4.4, new Date(), URI.create("http://imagen9.com"), bodegas.get(0), List.of(maridajes.get(2)), varietales.get(2), resenasVino9));
-        vinos.add(new Vino("Nombre Vino10", 300.0, 3.7, new Date(), URI.create("http://imagen10.com"), bodegas.get(0), List.of(maridajes.get(2)), varietales.get(2), resenasVino10));
-        vinos.add(new Vino("Nombre Vino11", 450.0, 5.4, new Date(), URI.create("http://imagen11.com"), bodegas.get(0), List.of(maridajes.get(2)), varietales.get(2), resenasVino11));
-        vinos.add(new Vino("Nombre Vino12", 550.0, 3.4, new Date(), URI.create("http://imagen12.com"), bodegas.get(0), List.of(maridajes.get(2)), varietales.get(2), resenasVino12));
-        vinos.add(new Vino("Nombre Vino13", 650.0, 5.2, new Date(), URI.create("http://imagen13.com"), bodegas.get(0), List.of(maridajes.get(2)), varietales.get(2), resenasVino13));
-        vinos.add(new Vino("Nombre Vino14", 750.0, 5.8, new Date(), URI.create("http://imagen14.com"), bodegas.get(0), List.of(maridajes.get(2)), varietales.get(2), resenasVino14));
-        vinos.add(new Vino("Nombre Vino15", 950.0, 5.7, new Date(), URI.create("http://imagen15.com"), bodegas.get(0), List.of(maridajes.get(2)), varietales.get(2), resenasVino15));
+        vinos.add(new Vino("Nombre Vino1", 200.0, 4.5, new Date(), URI.create("http://imagen1.com"), bodegas.get(0), List.of(maridajes.get(0)), varietales, resenasVino1));
+        vinos.add(new Vino("Nombre Vino2", 100.0, 3.5, new Date(), URI.create("http://imagen2.com"), bodegas.get(0), List.of(maridajes.get(1)), varietales, resenasVino2));
+        vinos.add(new Vino("Nombre Vino3", 300.0, 4.6, new Date(), URI.create("http://imagen3.com"), bodegas.get(0), List.of(maridajes.get(2)), varietales, resenasVino3));
+        vinos.add(new Vino("Nombre Vino4", 400.0, 4.7, new Date(), URI.create("http://imagen4.com"), bodegas.get(0), List.of(maridajes.get(2)), varietales, resenasVino4));
+        vinos.add(new Vino("Nombre Vino5", 500.0, 4.9, new Date(), URI.create("http://imagen5.com"), bodegas.get(0), List.of(maridajes.get(2)), varietales, resenasVino5));
+        vinos.add(new Vino("Nombre Vino6", 600.0, 4.0, new Date(), URI.create("http://imagen6.com"), bodegas.get(0), List.of(maridajes.get(2)), varietales, resenasVino6));
+        vinos.add(new Vino("Nombre Vino7", 700.0, 3.9, new Date(), URI.create("http://imagen7.com"), bodegas.get(0), List.of(maridajes.get(2)), varietales, resenasVino7));
+        vinos.add(new Vino("Nombre Vino8", 800.0, 5.0, new Date(), URI.create("http://imagen8.com"), bodegas.get(0), List.of(maridajes.get(2)), varietales, resenasVino8));
+        vinos.add(new Vino("Nombre Vino9", 900.0, 4.4, new Date(), URI.create("http://imagen9.com"), bodegas.get(0), List.of(maridajes.get(2)), varietales, resenasVino9));
+        vinos.add(new Vino("Nombre Vino10", 300.0, 3.7, new Date(), URI.create("http://imagen10.com"), bodegas.get(0), List.of(maridajes.get(2)), varietales, resenasVino10));
+        vinos.add(new Vino("Nombre Vino11", 450.0, 5.4, new Date(), URI.create("http://imagen11.com"), bodegas.get(0), List.of(maridajes.get(2)), varietales, resenasVino11));
+        vinos.add(new Vino("Nombre Vino12", 550.0, 3.4, new Date(), URI.create("http://imagen12.com"), bodegas.get(0), List.of(maridajes.get(2)), varietales, resenasVino12));
+        vinos.add(new Vino("Nombre Vino13", 650.0, 5.2, new Date(), URI.create("http://imagen13.com"), bodegas.get(0), List.of(maridajes.get(2)), varietales, resenasVino13));
+        vinos.add(new Vino("Nombre Vino14", 750.0, 5.8, new Date(), URI.create("http://imagen14.com"), bodegas.get(0), List.of(maridajes.get(2)), varietales, resenasVino14));
+        vinos.add(new Vino("Nombre Vino15", 950.0, 5.7, new Date(), URI.create("http://imagen15.com"), bodegas.get(0), List.of(maridajes.get(2)), varietales, resenasVino15));
 
 
 

@@ -30,7 +30,7 @@ public class PantallaGenerarRanking {
         dateChooserDesde = new JDateChooser();
         dateChooserHasta = new JDateChooser();
 
-        JLabel fondo = new JLabel(new ImageIcon("PPAI2/src/main/java/imagen/FondoBonVino.png"));
+        JLabel fondo = new JLabel(new ImageIcon("/home/pedro/Desktop/PPAI-DSI/PPAI-DSI mio/PPAI2/src/main/java/imagen/FondoBonVino.png"));
         ventana.setContentPane(fondo);
         fondo.setLayout(new FlowLayout());
 
@@ -79,7 +79,7 @@ public class PantallaGenerarRanking {
         ventana.pack();
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
-        gestor.opcGenerarRankingVinos(this, gestor);
+        gestor.opcGenerarRankingVinos(pantalla, gestor);
     }
 
     public void solicitarSeleccionFechas(GestorGenerarRanking gestor, PantallaGenerarRanking pantalla) {
@@ -107,7 +107,18 @@ public class PantallaGenerarRanking {
                 gestor.tomarSeleccionFechas(pantalla, gestor, fechaDesde, fechaHasta);
             }
         });
+        // Agrega el botón "Cancelar" que llama a la función cerrarVentana()
+        JButton btnCancelar = new JButton("Cancelar");
+        btnCancelar.setFont(pantalla.fuenteGrande);
+        btnCancelar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cerrarVentana();
+            }
+        });
+        panel.add(btnCancelar);
         panel.add(btnFiltrar);
+
 
         // Creamos un contenedor para la ventana
         Container contenedor = pantalla.ventana.getContentPane();
@@ -138,7 +149,7 @@ public class PantallaGenerarRanking {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
         // Crea un JComboBox para permitir al usuario seleccionar si el tipo es "premium" o "no es premium"
-        String[] tipos = { "Es premium", "No es premium" };
+        String[] tipos = { "Resenas normales", "Resenas sommelier", "Resenas amigos" };
         JComboBox<String> comboBoxTipos = new JComboBox<>(tipos);
         comboBoxTipos.setFont(pantalla.fuenteGrande); // Aplica la fuente grande al JComboBox
 
@@ -155,6 +166,16 @@ public class PantallaGenerarRanking {
                 gestor.tomarSeleccionTipoResena(pantalla, gestor, tipoSeleccionado);
             }
         });
+        // Agrega el botón "Cancelar" que llama a la función cerrarVentana()
+        JButton btnCancelar = new JButton("Cancelar");
+        btnCancelar.setFont(pantalla.fuenteGrande);
+        btnCancelar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cerrarVentana();
+            }
+        });
+        panel.add(btnCancelar);
 
         // Agrega el botón al panel
         panel.add(btnConfirmar);
@@ -173,7 +194,7 @@ public class PantallaGenerarRanking {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
         // Crea un JComboBox para permitir al usuario seleccionar si el tipo es "premium" o "no es premium"
-        String[] tipos = { "Excel", "Pantalla", "Realidad Virtual" };
+        String[] tipos = { "Excel", "Pantalla", "PDF" };
         JComboBox<String> comboBoxTipos = new JComboBox<>(tipos);
         comboBoxTipos.setFont(pantalla.fuenteGrande); // Aplica la fuente grande al JComboBox
 
@@ -190,6 +211,16 @@ public class PantallaGenerarRanking {
                 gestor.tomarSeleccionFormaVisualizacion(pantalla, gestor, tipoSeleccionado);
             }
         });
+        // Agrega el botón "Cancelar" que llama a la función cerrarVentana()
+        JButton btnCancelar = new JButton("Cancelar");
+        btnCancelar.setFont(pantalla.fuenteGrande);
+        btnCancelar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cerrarVentana();
+            }
+        });
+        panel.add(btnCancelar);
 
         // Agrega el botón al panel
         panel.add(btnConfirmar);
@@ -236,9 +267,20 @@ public class PantallaGenerarRanking {
         pantalla.ventana.add(panel);
         pantalla.ventana.setVisible(true);
     }
+    public void error(String mensaje, boolean cierre){
+        JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+        if (cierre){
+            System.exit(0);
+        }
+    }
 
     public void cerrarVentana() {
         ventana.dispose();
+    }
+
+    public void informarExportacionExitosa(PantallaGenerarRanking pantalla, GestorGenerarRanking gestor) {
+        // Muestra un mensaje de dialogo
+        JOptionPane.showMessageDialog(null, "Exportado a excel exitosamente");
     }
 }
 

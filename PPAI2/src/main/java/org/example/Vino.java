@@ -13,10 +13,12 @@ public class Vino {
     private URI imagen;
     private Bodega bodega;
     private List<Maridaje> maridajes;
-    private Varietal varietales;
+    private List<Varietal> varietales;
     private ArrayList<Resena> resena;
 
-    public Vino(String nombre, double precio, double notaCata, Date anada, URI imagen, Bodega bodega, List<Maridaje> maridajes, Varietal varietales, ArrayList<Resena> resena) {
+
+
+    public Vino(String nombre, double precio, double notaCata, Date anada, URI imagen, Bodega bodega, List<Maridaje> maridajes, List<Varietal> varietales, ArrayList<Resena> resena) {
         this.nombre = nombre;
         this.precio = precio;
         this.notaCata = notaCata;
@@ -44,8 +46,12 @@ public class Vino {
         return maridajes;
     }
 
-    public Varietal getVarietales() {
+    public List<Varietal> getVarietales() {
         return varietales;
+    }
+
+    public void setVarietales(List<Varietal> varietales) {
+        this.varietales = varietales;
     }
 
     public void setBodega(Bodega bodega) {
@@ -56,9 +62,7 @@ public class Vino {
         this.maridajes = maridajes;
     }
 
-    public void setVarietales(Varietal varietales) {
-        this.varietales = varietales;
-    }
+
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -115,6 +119,10 @@ public class Vino {
                 } else { puntajes.add((double) 0);}
             }
         }
+        return this.calcularPuntajePromedio(puntajes);
+    }
+
+    public double calcularPuntajePromedio(ArrayList<Double> puntajes){
         // Calculamos el promedio
         double sum = 0;
         for (Double puntaje : puntajes) {
@@ -122,7 +130,6 @@ public class Vino {
         }
         return sum / puntajes.size();
     }
-
 
     public boolean tenesResenaEnPeriodo(Date fechaDesde, Date fechaHasta) {
         if (resena == null || resena.isEmpty()) {
@@ -151,7 +158,15 @@ public class Vino {
 
     }
 
-    public String buscarVarietal() {
-        return varietales.getDescripcion();
+    public String[] buscarVarietal() {
+        String[] infoVarietales = new String[varietales.size()];
+        int i = 0;
+        for(Varietal varietal: varietales) {
+            infoVarietales[i] = varietal.getDescripcion();
+            i++;
+        }
+        return infoVarietales;
+        }
+
     }
-}
+
