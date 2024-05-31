@@ -31,7 +31,7 @@ public class PantallaGenerarRanking {
         dateChooserDesde = new JDateChooser();
         dateChooserHasta = new JDateChooser();
 
-        JLabel fondo = new JLabel(new ImageIcon("C:\\Users\\juanp\\IdeaProjects\\PPAI-DSI\\PPAI2\\src\\main\\java\\imagen\\FondoBonVino.png"));
+        JLabel fondo = new JLabel(new ImageIcon("/home/pedro/Desktop/PPAI-DSI/PPAI-DSI mio/PPAI2/src/main/java/imagen/FondoBonVino.png"));
         ventana.setContentPane(fondo);
         fondo.setLayout(new FlowLayout());
 
@@ -328,6 +328,7 @@ public class PantallaGenerarRanking {
     public void informarExportacionExitosa(PantallaGenerarRanking pantalla, GestorGenerarRanking gestor) {
         // Muestra un mensaje de dialogo
         JOptionPane.showMessageDialog(null, "Exportado a excel exitosamente");
+        ventana.dispose();
     }
 }
 
