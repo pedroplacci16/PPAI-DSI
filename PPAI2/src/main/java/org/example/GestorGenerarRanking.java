@@ -145,7 +145,7 @@ public class GestorGenerarRanking {
 
 
     public void finCu(PantallaGenerarRanking pantalla) {
-        pantalla.cerrarVentana();
+        // Finaliza el CU
     }
 
 }
