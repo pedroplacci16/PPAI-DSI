@@ -1,26 +1,21 @@
-package org.example;
+package org.example.bd.ejecucion;
 
 import com.toedter.calendar.JDateChooser;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
 
-import javax.swing.*;
-import javax.swing.border.Border;
-
-import com.toedter.calendar.JDateChooser;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-
-public class PantallaGenerarRanking {
+public class PantallaGenerarRankingP {
     private final JFrame ventana;
     private final JDateChooser dateChooserDesde;
     private final JDateChooser dateChooserHasta;
     private final Font fuenteGrande;
 
 
-    public PantallaGenerarRanking() {
+    public PantallaGenerarRankingP() {
         ventana = new JFrame("Mi Ventana Simple");
         ventana.setSize(600, 400);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,12 +43,12 @@ public class PantallaGenerarRanking {
     }
 
 
-    public void opcGenerarRankingVinos(GestorGenerarRanking gestor, PantallaGenerarRanking pantalla){
+    public void opcGenerarRankingVinos(GestorGenerarRankingP gestor, PantallaGenerarRankingP pantalla){
         this.habilitarVentana(gestor, pantalla);
     }
 
 
-    public void habilitarVentana(GestorGenerarRanking gestor, PantallaGenerarRanking pantalla) {
+    public void habilitarVentana(GestorGenerarRankingP gestor, PantallaGenerarRankingP pantalla) {
         // Creamos un contenedor para la ventana
         Container contenedor = ventana.getContentPane();
 
@@ -68,7 +63,7 @@ public class PantallaGenerarRanking {
     }
 
 
-    public void solicitarSeleccionFechas(GestorGenerarRanking gestor, PantallaGenerarRanking pantalla) {
+    public void solicitarSeleccionFechas(GestorGenerarRankingP gestor, PantallaGenerarRankingP pantalla) {
         JPanel panel = new JPanel(new GridLayout(3, 1, 0, 10));
 
         JLabel labelDesde = new JLabel("Fecha desde:");
@@ -130,7 +125,7 @@ public class PantallaGenerarRanking {
     }
 
 
-    public void solicitarSeleccionTipoResena(PantallaGenerarRanking pantalla, GestorGenerarRanking gestor){
+    public void solicitarSeleccionTipoResena(PantallaGenerarRankingP pantalla, GestorGenerarRankingP gestor){
 
         //Borra todo lo que está en la ventana
         pantalla.ventana.getContentPane().removeAll();
@@ -193,7 +188,7 @@ public class PantallaGenerarRanking {
     }
 
 
-    public void solicitarSeleccionFormaVisualizacion(PantallaGenerarRanking pantalla, GestorGenerarRanking gestor){
+    public void solicitarSeleccionFormaVisualizacion(PantallaGenerarRankingP pantalla, GestorGenerarRankingP gestor){
         // Borra t0do lo que está en la ventana
         pantalla.ventana.getContentPane().removeAll();
         pantalla.ventana.repaint();
@@ -256,7 +251,7 @@ public class PantallaGenerarRanking {
     }
 
 
-    public void solicitarConfirmacionReporte(PantallaGenerarRanking pantalla, GestorGenerarRanking gestor) {
+    public void solicitarConfirmacionReporte(PantallaGenerarRankingP pantalla, GestorGenerarRankingP gestor) {
 
         // Crea un panel para agregar los componentes
         JPanel panel = new JPanel(new GridLayout(3, 0, 0, 0));
@@ -325,11 +320,9 @@ public class PantallaGenerarRanking {
     }
 
 
-    public void informarExportacionExitosa(PantallaGenerarRanking pantalla, GestorGenerarRanking gestor) {
+    public void informarExportacionExitosa(PantallaGenerarRankingP pantalla, GestorGenerarRankingP gestor) {
         // Muestra un mensaje de dialogo
         JOptionPane.showMessageDialog(null, "Exportado a excel exitosamente");
         ventana.dispose();
     }
 }
-
-

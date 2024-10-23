@@ -1,9 +1,11 @@
-package org.example;
+package org.example.bd.ejecucion;
+
+import org.example.InterfazExcel;
+import org.example.bd.clasesMapeadas.VinoBd;
 
 import java.util.*;
 
-
-public class GestorGenerarRanking {
+public class GestorGenerarRankingP {
     private Date fechaDesde;
     private Date fechaHasta;
 
@@ -11,12 +13,12 @@ public class GestorGenerarRanking {
 
     private HashMap<String, HashMap<String, Object>> vinosInfo = new HashMap<>();
 
-    public void opcGenerarRankingVinos(PantallaGenerarRanking pantalla, GestorGenerarRanking gestor){
+    public void opcGenerarRankingVinos(PantallaGenerarRankingP pantalla, GestorGenerarRankingP gestor){
         pantalla.solicitarSeleccionFechas(gestor, pantalla);
 
     }
 
-    public void tomarSeleccionFechas(PantallaGenerarRanking pantalla, GestorGenerarRanking gestor, Date fechaDesde, Date fechaHasta){
+    public void tomarSeleccionFechas(PantallaGenerarRankingP pantalla, GestorGenerarRankingP gestor, Date fechaDesde, Date fechaHasta){
         System.out.println(fechaHasta.toString());
         System.out.println(fechaDesde.toString());
         if(gestor.validarPeriodo(fechaDesde, fechaHasta)){
@@ -35,7 +37,7 @@ public class GestorGenerarRanking {
     }
 
 
-    public void tomarSeleccionTipoResena(PantallaGenerarRanking pantalla, GestorGenerarRanking gestor, String tipo){
+    public void tomarSeleccionTipoResena(PantallaGenerarRankingP pantalla, GestorGenerarRankingP gestor, String tipo){
         System.out.println(tipo);
         if(tipo == "Resenas sommelier") {
             pantalla.solicitarSeleccionFormaVisualizacion(pantalla, gestor);
@@ -47,7 +49,7 @@ public class GestorGenerarRanking {
     }
 
 
-    public void tomarSeleccionFormaVisualizacion(PantallaGenerarRanking pantalla, GestorGenerarRanking gestor, String forma) {
+    public void tomarSeleccionFormaVisualizacion(PantallaGenerarRankingP pantalla, GestorGenerarRankingP gestor, String forma) {
         System.out.println(forma);
         if(forma == "Excel") {
             pantalla.solicitarConfirmacionReporte(pantalla, gestor);
@@ -59,7 +61,7 @@ public class GestorGenerarRanking {
     }
 
 
-    public void tomarConfirmacionReporte(PantallaGenerarRanking pantalla, GestorGenerarRanking gestor) {
+    public void tomarConfirmacionReporte(PantallaGenerarRankingP pantalla, GestorGenerarRankingP gestor) {
         System.out.println("Correcto");
         gestor.buscarVinosConResenasEnPeriodo(pantalla, gestor);
         //  Ordenar los vinos según la calificación de sommeliers.
@@ -70,15 +72,15 @@ public class GestorGenerarRanking {
     }
 
 
-    private void buscarPuntajeSommelierEnPeriodo(PantallaGenerarRanking pantalla, GestorGenerarRanking gestor) {
+    private void buscarPuntajeSommelierEnPeriodo(PantallaGenerarRankingP pantalla, GestorGenerarRankingP gestor) {
         System.out.println("Buscando....");
         //Tengo que modelar el acceso a BD
-        Bd bd = new Bd();
-        ArrayList<Vino> vinos = bd.vinos;
-        System.out.println(bd.vinos.get(0).getPrecio());
+        ManejoBd md = new ManejoBd();
+        List<VinoBd> vinos = md.obtenerTodosLosVinos();
+        System.out.println(vinos.get(0).getPrecio());
         Map<String, Double> promedios = new HashMap<>();
 
-        for (Vino vino : vinos) {
+        for (VinoBd vino : vinos) {
             // Calculamos el puntaje promedio del vino en el período especificado
             double promedio = vino.buscarPuntajeSommelierEnPeriodo(gestor.fechaDesde, gestor.fechaHasta);
 
@@ -97,12 +99,12 @@ public class GestorGenerarRanking {
     }
 
 
-    private void buscarVinosConResenasEnPeriodo(PantallaGenerarRanking pantalla, GestorGenerarRanking gestor) {
+    private void buscarVinosConResenasEnPeriodo(PantallaGenerarRankingP pantalla, GestorGenerarRankingP gestor) {
         System.out.println("Buscando vinos con reseñas en el período especificado...");
-        Bd bd = new Bd();
-        ArrayList<Vino> vinos = bd.vinos;
+        ManejoBd md = new ManejoBd();
+        List<VinoBd> vinos = md.obtenerTodosLosVinos();
 
-        for (Vino vino : vinos) {
+        for (VinoBd vino : vinos) {
             if (vino.tenesResenaEnPeriodo(gestor.fechaDesde, gestor.fechaHasta)) {
                 String nombreVino = vino.getNombre();
                 double precioVino = vino.getPrecio();
@@ -144,7 +146,7 @@ public class GestorGenerarRanking {
     }
 
 
-    public void finCu(PantallaGenerarRanking pantalla) {
+    public void finCu(PantallaGenerarRankingP pantalla) {
         // Finaliza el CU
     }
 }

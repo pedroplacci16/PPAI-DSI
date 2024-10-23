@@ -97,7 +97,7 @@ public class Bd {
         resenas.add(resenasVino5.get(0));
 
         ArrayList<Resena> resenasVino6 = new ArrayList<>();
-        resenasVino6.add(new Resena("Comentario Resena6", true, new Date(), 4.0, null));
+        resenasVino6.add(new Resena("Comentario Resena6", false, new Date(), 4.0, null));
         resenas.add(resenasVino6.get(0));
 
         ArrayList<Resena> resenasVino7 = new ArrayList<>();
