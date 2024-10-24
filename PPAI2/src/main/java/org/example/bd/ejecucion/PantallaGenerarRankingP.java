@@ -26,7 +26,7 @@ public class PantallaGenerarRankingP {
         dateChooserDesde = new JDateChooser();
         dateChooserHasta = new JDateChooser();
 
-        JLabel fondo = new JLabel(new ImageIcon("/home/pedro/Desktop/PPAI-DSI/PPAI-DSI mio/PPAI2/src/main/java/imagen/FondoBonVino.png"));
+        JLabel fondo = new JLabel(new ImageIcon("C:\\Users\\juanp\\IdeaProjects\\PPAI-DSI\\PPAI2\\src\\main\\java\\imagen\\FondoBonVino.png"));
         ventana.setContentPane(fondo);
         fondo.setLayout(new FlowLayout());
 
@@ -143,7 +143,7 @@ public class PantallaGenerarRankingP {
         // Agrega el JComboBox al panel
         panel.add(comboBoxTipos);
 
-        // Crea un botón para que el usuario confirme su selección
+        // Boton confirmar
         JButton btnConfirmar = new JButton("Confirmar");
         btnConfirmar.setFont(pantalla.fuenteGrande);
         btnConfirmar.addActionListener(new ActionListener() {
@@ -154,7 +154,7 @@ public class PantallaGenerarRankingP {
             }
         });
 
-        // Agrega el botón "Cancelar" que llama a la función cerrarVentana()
+        // Boton cancelar
         JButton btnCancelar = new JButton("Cancelar");
         btnCancelar.setFont(pantalla.fuenteGrande);
         btnCancelar.addActionListener(new ActionListener() {
@@ -164,7 +164,18 @@ public class PantallaGenerarRankingP {
             }
         });
 
+        // Boton volver
+        JButton btnVolver = new JButton("Volver");
+        btnVolver.setFont(pantalla.fuenteGrande);
+        btnVolver.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                volverAPantallaAnterior(pantalla, () -> solicitarSeleccionFechas(gestor, pantalla));
+            }
+        });
+
         panel.add(btnConfirmar);
+        panel.add(btnVolver);
         panel.add(btnCancelar);
 
         // Creamos un contenedor para la ventana
@@ -205,7 +216,7 @@ public class PantallaGenerarRankingP {
         // Agrega el JComboBox al panel
         panel.add(comboBoxTipos);
 
-        // Crea un botón para que el usuario confirme su selección
+        // Boton confirmar
         JButton btnConfirmar = new JButton("Confirmar");
         btnConfirmar.setFont(pantalla.fuenteGrande);
         btnConfirmar.addActionListener(new ActionListener() {
@@ -215,7 +226,7 @@ public class PantallaGenerarRankingP {
                 gestor.tomarSeleccionFormaVisualizacion(pantalla, gestor, tipoSeleccionado);
             }
         });
-        // Agrega el botón "Cancelar" que llama a la función cerrarVentana()
+        // Boton Cancelar
         JButton btnCancelar = new JButton("Cancelar");
         btnCancelar.setFont(pantalla.fuenteGrande);
         btnCancelar.addActionListener(new ActionListener() {
@@ -225,8 +236,19 @@ public class PantallaGenerarRankingP {
             }
         });
 
-        // Agrega el botón al panel
+        // Boton volver
+        JButton btnVolver = new JButton("Volver");
+        btnVolver.setFont(pantalla.fuenteGrande);
+        btnVolver.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                volverAPantallaAnterior(pantalla, () -> solicitarSeleccionTipoResena(pantalla, gestor));
+            }
+        });
+
+
         panel.add(btnConfirmar);
+        panel.add(btnVolver);
         panel.add(btnCancelar);
 
         // Creamos un contenedor para la ventana
@@ -240,7 +262,7 @@ public class PantallaGenerarRankingP {
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.anchor = GridBagConstraints.CENTER;
-        gbc.insets = new Insets(130, -50, 0, 0);
+        gbc.insets = new Insets(130, 0, 0, 0);
 
         // Agregamos el panel al contenedor con los GridBagConstraints
         contenedor.add(panel, gbc);
@@ -253,12 +275,13 @@ public class PantallaGenerarRankingP {
 
     public void solicitarConfirmacionReporte(PantallaGenerarRankingP pantalla, GestorGenerarRankingP gestor) {
 
-        // Crea un panel para agregar los componentes
-        JPanel panel = new JPanel(new GridLayout(3, 0, 0, 0));
+        // Crea un panel con un GridLayout para organizar los componentes en una columna
+        JPanel panel = new JPanel(new GridLayout(4, 1, 2, 10));
 
         // Crea un mensaje de confirmación
         JLabel mensaje = new JLabel("¿Desea generar el reporte?");
         mensaje.setFont(pantalla.fuenteGrande);
+        mensaje.setHorizontalAlignment(JLabel.CENTER);
         panel.add(mensaje);
 
         // Crea botones para confirmar o cancelar
@@ -282,6 +305,17 @@ public class PantallaGenerarRankingP {
         });
         panel.add(btnNo);
 
+        // Boton volver
+        JButton btnVolver = new JButton("Volver");
+        btnVolver.setFont(pantalla.fuenteGrande);
+        btnVolver.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                volverAPantallaAnterior(pantalla, () -> solicitarSeleccionFormaVisualizacion(pantalla, gestor));
+            }
+        });
+        panel.add(btnVolver);
+
         // Creamos un contenedor para la ventana
         Container contenedor = pantalla.ventana.getContentPane();
 
@@ -291,20 +325,17 @@ public class PantallaGenerarRankingP {
         // Creamos un GridBagConstraints para configurar el posicionamiento del panel
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 0;
+        gbc.gridy = 1;
         gbc.anchor = GridBagConstraints.CENTER;
-        gbc.insets = new Insets(100, 0, 0, 0);
+        gbc.insets = new Insets(140, 0, 0, 0);
 
-        // Agregamos el panel al contenedor con los GridBagConstraints
-        contenedor.add(panel, gbc);
-
-
-        // Agrega el panel a la ventana y la hace visible
-        pantalla.ventana.getContentPane().removeAll();
+        // Limpiamos el contenedor, agregamos el panel y lo hacemos visible
+        contenedor.removeAll();
         pantalla.ventana.repaint();
-        pantalla.ventana.add(panel,gbc);
+        contenedor.add(panel, gbc);
         pantalla.ventana.setVisible(true);
     }
+
 
 
     public void error(String mensaje, boolean cierre){
@@ -317,6 +348,12 @@ public class PantallaGenerarRankingP {
 
     public void cerrarVentana() {
         ventana.dispose();
+    }
+
+    public void volverAPantallaAnterior(PantallaGenerarRankingP pantalla, Runnable metodoAnterior) {
+        pantalla.ventana.getContentPane().removeAll();
+        pantalla.ventana.repaint();
+        metodoAnterior.run();
     }
 
 
