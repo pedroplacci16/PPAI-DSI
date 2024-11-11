@@ -2,10 +2,12 @@ package org.example.bd.ejecucion;
 
 import org.example.InterfazExcel;
 import org.example.bd.clasesMapeadas.VinoBd;
+import org.example.iterator.IAgregado;
+import org.example.iterator.IteradorVinos;
 
 import java.util.*;
 
-public class GestorGenerarRankingP {
+public class GestorGenerarRankingP implements IAgregado {
     private Date fechaDesde;
     private Date fechaHasta;
 
@@ -82,7 +84,7 @@ public class GestorGenerarRankingP {
 
         for (VinoBd vino : vinos) {
             // Calculamos el puntaje promedio del vino en el período especificado
-            double promedio = vino.buscarPuntajeSommelierEnPeriodo(gestor.fechaDesde, gestor.fechaHasta);
+            double promedio = vino.tenesPuntajeSommelierEnPeriodo(gestor.fechaDesde, gestor.fechaHasta);
 
             // Guardamos el puntaje promedio en el mapa con el nombre del vino como clave
             if(promedio!=0) {
@@ -97,39 +99,42 @@ public class GestorGenerarRankingP {
 
 
     }
+private void buscarVinosConResenasEnPeriodo(PantallaGenerarRankingP pantalla, GestorGenerarRankingP gestor) {
+    System.out.println("Buscando vinos con reseñas en el período especificado...");
+    ManejoBd md = new ManejoBd();
+    List<VinoBd> vinos = md.obtenerTodosLosVinos();
+    VinoBd[] vinosArray = vinos.toArray(new VinoBd[0]);
+    IteradorVinos iterador = this.crearIterador(vinosArray);
+    iterador.primero();
+    while(!iterador.haTerminado()) {
+        VinoBd vinoAct = (VinoBd) iterador.elementoActual();
+        if (vinoAct != null) {
+            String nombreVino = vinoAct.getNombre();
+            double precioVino = vinoAct.getPrecio();
+            String[] infoBodega = vinoAct.buscarInfoBodega();
+            String nombreBodega = infoBodega[0];
+            String nombreRegion = infoBodega[1];
+            String nombrePais = infoBodega[2];
+            String[] descripcionVarietal = vinoAct.buscarVarietal();
 
 
-    private void buscarVinosConResenasEnPeriodo(PantallaGenerarRankingP pantalla, GestorGenerarRankingP gestor) {
-        System.out.println("Buscando vinos con reseñas en el período especificado...");
-        ManejoBd md = new ManejoBd();
-        List<VinoBd> vinos = md.obtenerTodosLosVinos();
+            HashMap<String, Object> info = new HashMap<>();
+            info.put("precio", precioVino);
+            info.put("nombreBodega", nombreBodega);
+            info.put("nombreRegion", nombreRegion);
+            info.put("nombrePais", nombrePais);
+            info.put("descripcionVarietal", descripcionVarietal);
+            vinosInfo.put(nombreVino, info);
 
-        for (VinoBd vino : vinos) {
-            if (vino.tenesResenaEnPeriodo(gestor.fechaDesde, gestor.fechaHasta)) {
-                String nombreVino = vino.getNombre();
-                double precioVino = vino.getPrecio();
-                String[] infoBodega = vino.buscarInfoBodega();
-                String nombreBodega = infoBodega[0];
-                String nombreRegion = infoBodega[1];
-                String nombrePais = infoBodega[2];
-                String[] descripcionVarietal = vino.buscarVarietal();
-
-
-                HashMap<String, Object> info = new HashMap<>();
-                info.put("precio", precioVino);
-                info.put("nombreBodega", nombreBodega);
-                info.put("nombreRegion", nombreRegion);
-                info.put("nombrePais", nombrePais);
-                info.put("descripcionVarietal", descripcionVarietal);
-                vinosInfo.put(nombreVino, info);
-            }
         }
-        // Flujo alternativo
-        if (vinosInfo.isEmpty()){
-            pantalla.error("No existen resenas para ese periodo seleccionado", true);
-        }
-        gestor.buscarPuntajeSommelierEnPeriodo(pantalla, gestor);
+        iterador.siguiente();
     }
+    // Flujo alternativo
+    if (vinosInfo.isEmpty()){
+        pantalla.error("No existen resenas para ese periodo seleccionado", true);
+    }
+    gestor.buscarPuntajeSommelierEnPeriodo(pantalla, gestor);
+}
 
 
     public void ordenarVinosPorPromedio() {
@@ -148,5 +153,11 @@ public class GestorGenerarRankingP {
 
     public void finCu(PantallaGenerarRankingP pantalla) {
         // Finaliza el CU
+    }
+
+    @Override
+    public IteradorVinos crearIterador(Object[] vinos) {
+        Object[] fechasFiltro = {fechaDesde, fechaHasta};
+        return new IteradorVinos(vinos, fechasFiltro);
     }
 }

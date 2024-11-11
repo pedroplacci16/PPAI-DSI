@@ -1,9 +1,4 @@
 package org.example.bd.ejecucion;
-import org.example.GestorGenerarRanking;
-import org.example.PantallaGenerarRanking;
-import org.example.bd.clasesMapeadas.*;
-import jakarta.persistence.*;
-import java.util.*;
 
 public class PruebaEjecucion {
     public static void main(String[] args) {
@@ -14,7 +9,4 @@ public class PruebaEjecucion {
         PantallaGenerarRankingP pantalla = new PantallaGenerarRankingP();
         pantalla.opcGenerarRankingVinos(gestor, pantalla);
     }
-
 }
-
-

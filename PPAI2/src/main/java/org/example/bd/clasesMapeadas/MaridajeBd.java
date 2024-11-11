@@ -12,7 +12,11 @@ public class MaridajeBd {
     private String descripcion;
     @Column(name = "nombre")
     private String nombre;
-
+    public MaridajeBd() {
+    }
+    public long getId() {
+        return id;
+    }
     public MaridajeBd(String descripcion, String nombre) {
         this.descripcion = descripcion;
         this.nombre = nombre;

@@ -1,5 +1,8 @@
 package org.example.bd.clasesMapeadas;
 import jakarta.persistence.*;
+import org.example.iterator.IAgregado;
+import org.example.iterator.IIterador;
+import org.example.iterator.IteradorResena;
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -130,7 +133,7 @@ public class VinoBd {
     }
 
 
-    public double buscarPuntajeSommelierEnPeriodo(Date fechaDesde, Date fechaHasta) {
+    public double tenesPuntajeSommelierEnPeriodo(Date fechaDesde, Date fechaHasta) {
         List<Double> puntajes = new ArrayList<Double>();
         for (ResenaBd resena : resena){
             if(resena.sosDePeriodo(fechaDesde, fechaHasta)){
@@ -187,5 +190,4 @@ public class VinoBd {
         }
         return infoVarietales;
     }
-
 }
