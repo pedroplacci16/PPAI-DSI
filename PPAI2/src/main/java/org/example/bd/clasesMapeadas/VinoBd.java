@@ -3,6 +3,7 @@ import jakarta.persistence.*;
 import org.example.iterator.IAgregado;
 import org.example.iterator.IIterador;
 import org.example.iterator.IteradorResena;
+import org.example.iterator.IteradorVinos;
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 @Entity
 @Table(name = "vino")
-public class VinoBd {
+public class VinoBd implements IAgregado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -133,17 +134,35 @@ public class VinoBd {
     }
 
 
-    public double tenesPuntajeSommelierEnPeriodo(Date fechaDesde, Date fechaHasta) {
-        List<Double> puntajes = new ArrayList<Double>();
-        for (ResenaBd resena : resena){
-            if(resena.sosDePeriodo(fechaDesde, fechaHasta)){
-                if(resena.sosSommelierVerificado()){
-                    puntajes.add(resena.getPuntaje());
-                } else { puntajes.add((double) 0);}
-            }
+//    public double tenesPuntajeSommelierEnPeriodo(Date fechaDesde, Date fechaHasta) {
+//        List<Double> puntajes = new ArrayList<Double>();
+//        ResenaBd[] resenasArray = resena.toArray(new ResenaBd[0]);
+//        IteradorResena iterador = new IteradorResena(resenasArray, new Date[]{fechaDesde, fechaHasta});
+//        for (ResenaBd resena : resena){
+//            if(resena.sosDePeriodo(fechaDesde, fechaHasta)){
+//                if(resena.sosSommelierVerificado()){
+//                    puntajes.add(resena.getPuntaje());
+//                } else { puntajes.add((double) 0);}
+//            }
+//        }
+//        return this.calcularPuntajePromedio(puntajes);
+//    }
+public double tenesPuntajeSommelierEnPeriodo(Date fechaDesde, Date fechaHasta) {
+    List<Double> puntajes = new ArrayList<Double>();
+    ResenaBd[] resenasArray = resena.toArray(new ResenaBd[0]);
+    IteradorResena iterador = new IteradorResena(resenasArray, new Date[]{fechaDesde, fechaHasta});
+    iterador.primero();
+    while (!iterador.haTerminado()){
+        ResenaBd resenaAct = (ResenaBd) iterador.elementoActual();
+        if(resenaAct != null) {
+            if(resenaAct.sosSommelierVerificado()){
+                puntajes.add(resenaAct.getPuntaje());
+            } else { puntajes.add((double) 0);}
         }
-        return this.calcularPuntajePromedio(puntajes);
+        iterador.siguiente();
     }
+    return this.calcularPuntajePromedio(puntajes);
+}
 
     public double calcularPuntajePromedio(List<Double> puntajes){
         // Calculamos el promedio
@@ -189,5 +208,10 @@ public class VinoBd {
             i++;
         }
         return infoVarietales;
+    }
+
+    @Override
+    public IteradorResena crearIterador(Object[] resenas, Object[] fechasFiltro) {
+        return new IteradorResena((ResenaBd[]) resenas, fechasFiltro);
     }
 }

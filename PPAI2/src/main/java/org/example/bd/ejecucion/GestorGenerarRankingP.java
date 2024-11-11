@@ -104,7 +104,8 @@ private void buscarVinosConResenasEnPeriodo(PantallaGenerarRankingP pantalla, Ge
     ManejoBd md = new ManejoBd();
     List<VinoBd> vinos = md.obtenerTodosLosVinos();
     VinoBd[] vinosArray = vinos.toArray(new VinoBd[0]);
-    IteradorVinos iterador = this.crearIterador(vinosArray);
+    Object[] fechasFiltro = new Object[]{gestor.fechaDesde, gestor.fechaHasta};
+    IteradorVinos iterador = this.crearIterador(vinosArray, fechasFiltro);
     iterador.primero();
     while(!iterador.haTerminado()) {
         VinoBd vinoAct = (VinoBd) iterador.elementoActual();
@@ -156,8 +157,7 @@ private void buscarVinosConResenasEnPeriodo(PantallaGenerarRankingP pantalla, Ge
     }
 
     @Override
-    public IteradorVinos crearIterador(Object[] vinos) {
-        Object[] fechasFiltro = {fechaDesde, fechaHasta};
+    public IteradorVinos crearIterador(Object[] vinos, Object[] fechasFiltro) {
         return new IteradorVinos(vinos, fechasFiltro);
     }
 }
