@@ -67,7 +67,7 @@ public class PantallaGenerarRankingP {
         // Panel principal con esquinas redondeadas y tamaño ajustado
         JPanel panel = new RoundedPanel(30, new Color(245, 245, 245));
         panel.setLayout(new BorderLayout());
-        panel.setPreferredSize(new Dimension(400, 200)); // Panel más ancho y menos alto
+        panel.setPreferredSize(new Dimension(400, 200));
         panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         // Panel interno para etiquetas y selectores de fecha (alineación horizontal)
@@ -82,48 +82,48 @@ public class PantallaGenerarRankingP {
         gbcInner.gridx = 0;
         gbcInner.gridy = 0;
         JLabel labelDesde = new JLabel("Fecha Desde: ");
-        labelDesde.setFont(new Font("Garamond", Font.BOLD, 26)); // Fuente Serif, tamaño 18, negrita
+        labelDesde.setFont(new Font("Garamond", Font.BOLD, 26));
         innerPanel.add(labelDesde, gbcInner);
 
         gbcInner.gridx = 1;
         pantalla.dateChooserDesde.setFont(pantalla.fuenteGrande);
-        pantalla.dateChooserDesde.setPreferredSize(new Dimension(150, 30)); // Ajustar tamaño del JDateChooser
+        pantalla.dateChooserDesde.setPreferredSize(new Dimension(150, 30));
         innerPanel.add(pantalla.dateChooserDesde, gbcInner);
 
         // Etiqueta y campo de fecha "Fecha hasta:"
         gbcInner.gridx = 0;
         gbcInner.gridy = 1;
         JLabel labelHasta = new JLabel("Fecha Hasta: ");
-        labelHasta.setFont(new Font("Garamond", Font.BOLD, 26)); // Fuente Serif, tamaño 18, negrita
+        labelHasta.setFont(new Font("Garamond", Font.BOLD, 26));
         innerPanel.add(labelHasta, gbcInner);
 
         gbcInner.gridx = 1;
         pantalla.dateChooserHasta.setFont(pantalla.fuenteGrande);
-        pantalla.dateChooserHasta.setPreferredSize(new Dimension(150, 30)); // Ajustar tamaño del JDateChooser
+        pantalla.dateChooserHasta.setPreferredSize(new Dimension(150, 30));
         innerPanel.add(pantalla.dateChooserHasta, gbcInner);
 
-        panel.add(innerPanel, BorderLayout.CENTER); // Panel con las fechas en el centro
+        panel.add(innerPanel, BorderLayout.CENTER);
 
         // Panel de botones en la parte inferior
         JPanel botonesPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
         botonesPanel.setOpaque(false);
 
-        // Botón "Filtrar" con mismo tamaño que "Cancelar"
+
         JButton btnFiltrar = new JButton("Filtrar");
         btnFiltrar.setFont(pantalla.fuenteGrande);
-        btnFiltrar.setBackground(new Color(102, 178, 255));
+        btnFiltrar.setBackground(new Color(34, 139, 34));
         btnFiltrar.setForeground(Color.WHITE);
         btnFiltrar.setFocusPainted(false);
-        btnFiltrar.setPreferredSize(new Dimension(150, 40)); // Tamaño fijo para los botones
+        btnFiltrar.setPreferredSize(new Dimension(150, 40));
         btnFiltrar.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
         btnFiltrar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         btnFiltrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnFiltrar.setBackground(new Color(153, 204, 255));
+                btnFiltrar.setBackground(new Color(60, 179, 113));
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnFiltrar.setBackground(new Color(102, 178, 255));
+                btnFiltrar.setBackground(new Color(34, 139, 34));
             }
         });
 
@@ -133,13 +133,13 @@ public class PantallaGenerarRankingP {
             gestor.tomarSeleccionFechas(pantalla, gestor, fechaDesde, fechaHasta);
         });
 
-        // Botón "Cancelar" con mismo tamaño que "Filtrar"
+
         JButton btnCancelar = new JButton("Cancelar");
         btnCancelar.setFont(pantalla.fuenteGrande);
         btnCancelar.setBackground(new Color(255, 102, 102));
         btnCancelar.setForeground(Color.WHITE);
         btnCancelar.setFocusPainted(false);
-        btnCancelar.setPreferredSize(new Dimension(150, 40)); // Tamaño fijo para los botones
+        btnCancelar.setPreferredSize(new Dimension(150, 40));
         btnCancelar.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
         btnCancelar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
@@ -156,7 +156,7 @@ public class PantallaGenerarRankingP {
 
         botonesPanel.add(btnFiltrar);
         botonesPanel.add(btnCancelar);
-        panel.add(botonesPanel, BorderLayout.SOUTH); // Botones al fondo
+        panel.add(botonesPanel, BorderLayout.SOUTH);
 
         // Configuración final del contenedor y la ventana
         Container contenedor = pantalla.ventana.getContentPane();
@@ -165,8 +165,8 @@ public class PantallaGenerarRankingP {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 1;
-        gbc.anchor = GridBagConstraints.SOUTH; // Anclamos el panel al sur para bajarlo
-        gbc.insets = new Insets(130, 0, -30, 0); // Ajustamos el espaciado para bajarlo más
+        gbc.anchor = GridBagConstraints.SOUTH;
+        gbc.insets = new Insets(130, 0, -30, 0);
 
         contenedor.add(panel, gbc);
         pantalla.ventana.setVisible(true);
@@ -183,7 +183,7 @@ public class PantallaGenerarRankingP {
         // Panel principal con esquinas redondeadas y tamaño ajustado
         JPanel panel = new RoundedPanel(30, new Color(245, 245, 245));
         panel.setLayout(new BorderLayout());
-        panel.setPreferredSize(new Dimension(600, 200)); // Panel más ancho y menos alto
+        panel.setPreferredSize(new Dimension(600, 200));
         panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         // Panel interno para etiquetas y JComboBox (alineación horizontal)
@@ -198,20 +198,20 @@ public class PantallaGenerarRankingP {
         gbcInner.gridx = 0;
         gbcInner.gridy = 0;
         JLabel labelTipo = new JLabel("Seleccionar tipo de reseña: ");
-        labelTipo.setFont(new Font("Garamond", Font.BOLD, 26)); // Fuente Serif, tamaño 18, negrita
+        labelTipo.setFont(new Font("Garamond", Font.BOLD, 26));
         innerPanel.add(labelTipo, gbcInner);
 
         // JComboBox para seleccionar tipo de reseña
         String[] tipos = { "Resenas normales", "Resenas sommelier", "Resenas amigos" };
         JComboBox<String> comboBoxTipos = new JComboBox<>(tipos);
         comboBoxTipos.setFont(pantalla.fuenteGrande);
-        comboBoxTipos.setBackground(new Color(240, 248, 255)); // Color de fondo
+        comboBoxTipos.setBackground(new Color(240, 248, 255));
         comboBoxTipos.setBorder(BorderFactory.createLineBorder(new Color(70, 130, 180), 2, true)); // Borde azul claro
-        comboBoxTipos.setFocusable(false); // Para evitar el borde de selección
+        comboBoxTipos.setFocusable(false);
         gbcInner.gridx = 1;
         innerPanel.add(comboBoxTipos, gbcInner);
 
-        panel.add(innerPanel, BorderLayout.CENTER); // Panel con la selección de tipo de reseña en el centro
+        panel.add(innerPanel, BorderLayout.CENTER);
 
         // Panel de botones en la parte inferior
         JPanel botonesPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
@@ -220,19 +220,19 @@ public class PantallaGenerarRankingP {
         // Botón "Confirmar"
         JButton btnConfirmar = new JButton("Confirmar");
         btnConfirmar.setFont(pantalla.fuenteGrande);
-        btnConfirmar.setBackground(new Color(102, 178, 255));
+        btnConfirmar.setBackground(new Color(34, 139, 34));
         btnConfirmar.setForeground(Color.WHITE);
         btnConfirmar.setFocusPainted(false);
-        btnConfirmar.setPreferredSize(new Dimension(150, 40)); // Tamaño fijo para los botones
+        btnConfirmar.setPreferredSize(new Dimension(150, 40));
         btnConfirmar.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
         btnConfirmar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         btnConfirmar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnConfirmar.setBackground(new Color(153, 204, 255));
+                btnConfirmar.setBackground(new Color(60, 179, 113));
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnConfirmar.setBackground(new Color(102, 178, 255));
+                btnConfirmar.setBackground(new Color(34, 139, 34));
             }
         });
 
@@ -244,19 +244,19 @@ public class PantallaGenerarRankingP {
         // Botón "Volver"
         JButton btnVolver = new JButton("Volver");
         btnVolver.setFont(pantalla.fuenteGrande);
-        btnVolver.setBackground(new Color(34, 139, 34));
+        btnVolver.setBackground(new Color(102, 178, 255));
         btnVolver.setForeground(Color.WHITE);
         btnVolver.setFocusPainted(false);
-        btnVolver.setPreferredSize(new Dimension(150, 40)); // Tamaño fijo para los botones
+        btnVolver.setPreferredSize(new Dimension(150, 40));
         btnVolver.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
         btnVolver.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnVolver.setBackground(new Color(60, 179, 113));
+                btnVolver.setBackground(new Color(153, 204, 255));
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnVolver.setBackground(new Color(34, 139, 34));
+                btnVolver.setBackground(new Color(102, 178, 255));
             }
         });
 
@@ -270,7 +270,7 @@ public class PantallaGenerarRankingP {
         btnCancelar.setBackground(new Color(255, 102, 102));
         btnCancelar.setForeground(Color.WHITE);
         btnCancelar.setFocusPainted(false);
-        btnCancelar.setPreferredSize(new Dimension(150, 40)); // Tamaño fijo para los botones
+        btnCancelar.setPreferredSize(new Dimension(150, 40));
         btnCancelar.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
         btnCancelar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
@@ -288,7 +288,7 @@ public class PantallaGenerarRankingP {
         botonesPanel.add(btnConfirmar);
         botonesPanel.add(btnVolver);
         botonesPanel.add(btnCancelar);
-        panel.add(botonesPanel, BorderLayout.SOUTH); // Botones al fondo
+        panel.add(botonesPanel, BorderLayout.SOUTH);
 
         // Configuración final del contenedor y la ventana
         Container contenedor = pantalla.ventana.getContentPane();
@@ -296,9 +296,9 @@ public class PantallaGenerarRankingP {
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 0; // Ajustado para que el panel se muestre en la parte superior
-        gbc.anchor = GridBagConstraints.CENTER; // Centra el panel
-        gbc.insets = new Insets(100, 0, -60, 0); // Ajustar el espaciado para que esté centrado en la ventana
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.insets = new Insets(100, 0, -60, 0);
 
         contenedor.add(panel, gbc);
         pantalla.ventana.setVisible(true);
@@ -313,7 +313,7 @@ public class PantallaGenerarRankingP {
         // Panel principal con esquinas redondeadas y tamaño ajustado
         JPanel panel = new RoundedPanel(30, new Color(245, 245, 245));
         panel.setLayout(new BorderLayout());
-        panel.setPreferredSize(new Dimension(600, 200)); // Panel más ancho y menos alto
+        panel.setPreferredSize(new Dimension(600, 200));
         panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         // Panel interno para etiquetas y JComboBox (alineación horizontal)
@@ -328,20 +328,20 @@ public class PantallaGenerarRankingP {
         gbcInner.gridx = 0;
         gbcInner.gridy = 0;
         JLabel labelTipo = new JLabel("Seleccionar forma de visualización: ");
-        labelTipo.setFont(new Font("Garamond", Font.BOLD, 26)); // Fuente Serif, tamaño 18, negrita
+        labelTipo.setFont(new Font("Garamond", Font.BOLD, 26));
         innerPanel.add(labelTipo, gbcInner);
 
         // JComboBox para seleccionar la forma de visualización
         String[] tipos = { "Excel", "Pantalla", "PDF" };
         JComboBox<String> comboBoxTipos = new JComboBox<>(tipos);
         comboBoxTipos.setFont(pantalla.fuenteGrande);
-        comboBoxTipos.setBackground(new Color(240, 248, 255)); // Color de fondo
+        comboBoxTipos.setBackground(new Color(240, 248, 255));
         comboBoxTipos.setBorder(BorderFactory.createLineBorder(new Color(70, 130, 180), 2, true)); // Borde azul claro
-        comboBoxTipos.setFocusable(false); // Para evitar el borde de selección
+        comboBoxTipos.setFocusable(false);
         gbcInner.gridx = 1;
         innerPanel.add(comboBoxTipos, gbcInner);
 
-        panel.add(innerPanel, BorderLayout.CENTER); // Panel con la selección de forma de visualización en el centro
+        panel.add(innerPanel, BorderLayout.CENTER);
 
         // Panel de botones en la parte inferior
         JPanel botonesPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
@@ -350,19 +350,19 @@ public class PantallaGenerarRankingP {
         // Botón "Confirmar"
         JButton btnConfirmar = new JButton("Confirmar");
         btnConfirmar.setFont(pantalla.fuenteGrande);
-        btnConfirmar.setBackground(new Color(102, 178, 255));
+        btnConfirmar.setBackground(new Color(34, 139, 34));
         btnConfirmar.setForeground(Color.WHITE);
         btnConfirmar.setFocusPainted(false);
-        btnConfirmar.setPreferredSize(new Dimension(150, 40)); // Tamaño fijo para los botones
+        btnConfirmar.setPreferredSize(new Dimension(150, 40));
         btnConfirmar.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
         btnConfirmar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         btnConfirmar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnConfirmar.setBackground(new Color(153, 204, 255));
+                btnConfirmar.setBackground(new Color(60, 179, 113));
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnConfirmar.setBackground(new Color(102, 178, 255));
+                btnConfirmar.setBackground(new Color(34, 139, 34));
             }
         });
 
@@ -374,19 +374,19 @@ public class PantallaGenerarRankingP {
         // Botón "Volver"
         JButton btnVolver = new JButton("Volver");
         btnVolver.setFont(pantalla.fuenteGrande);
-        btnVolver.setBackground(new Color(34, 139, 34));
+        btnVolver.setBackground(new Color(102, 178, 255));
         btnVolver.setForeground(Color.WHITE);
         btnVolver.setFocusPainted(false);
-        btnVolver.setPreferredSize(new Dimension(150, 40)); // Tamaño fijo para los botones
+        btnVolver.setPreferredSize(new Dimension(150, 40));
         btnVolver.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
         btnVolver.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnVolver.setBackground(new Color(60, 179, 113));
+                btnVolver.setBackground(new Color(153, 204, 255));
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnVolver.setBackground(new Color(34, 139, 34));
+                btnVolver.setBackground(new Color(102, 178, 255));
             }
         });
 
@@ -400,7 +400,7 @@ public class PantallaGenerarRankingP {
         btnCancelar.setBackground(new Color(255, 102, 102));
         btnCancelar.setForeground(Color.WHITE);
         btnCancelar.setFocusPainted(false);
-        btnCancelar.setPreferredSize(new Dimension(150, 40)); // Tamaño fijo para los botones
+        btnCancelar.setPreferredSize(new Dimension(150, 40));
         btnCancelar.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
         btnCancelar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
@@ -418,7 +418,7 @@ public class PantallaGenerarRankingP {
         botonesPanel.add(btnConfirmar);
         botonesPanel.add(btnVolver);
         botonesPanel.add(btnCancelar);
-        panel.add(botonesPanel, BorderLayout.SOUTH); // Botones al fondo
+        panel.add(botonesPanel, BorderLayout.SOUTH);
 
         // Configuración final del contenedor y la ventana
         Container contenedor = pantalla.ventana.getContentPane();
@@ -426,9 +426,9 @@ public class PantallaGenerarRankingP {
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 0; // Ajustado para que el panel se muestre en la parte superior
-        gbc.anchor = GridBagConstraints.CENTER; // Centra el panel
-        gbc.insets = new Insets(100, 0, -60, 0); // Ajustar el espaciado para que esté centrado en la ventana
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.insets = new Insets(100, 0, -60, 0);
 
         contenedor.add(panel, gbc);
         pantalla.ventana.setVisible(true);
@@ -441,18 +441,18 @@ public class PantallaGenerarRankingP {
         pantalla.ventana.repaint();
 
         // Panel principal con esquinas redondeadas y tamaño ajustado
-        JPanel panel = new RoundedPanel(30, new Color(245, 245, 245)); // Color claro de fondo
+        JPanel panel = new RoundedPanel(30, new Color(245, 245, 245));
         panel.setLayout(new BorderLayout());
-        panel.setPreferredSize(new Dimension(600, 150)); // Ajustar tamaño
-        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Bordes internos
+        panel.setPreferredSize(new Dimension(600, 150));
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         // Panel interno para la etiqueta de mensaje (alineado centrado)
         JPanel mensajePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        mensajePanel.setOpaque(false); // Hacer transparente el panel de mensaje
+        mensajePanel.setOpaque(false);
         JLabel mensaje = new JLabel("¿Desea generar el reporte?");
-        mensaje.setFont(new Font("Garamond", Font.BOLD, 26)); // Fuente Serif, tamaño 26, negrita
+        mensaje.setFont(new Font("Garamond", Font.BOLD, 26));
         mensaje.setHorizontalAlignment(JLabel.CENTER);
-        mensaje.setForeground(Color.BLACK); // Color de texto negro
+        mensaje.setForeground(Color.BLACK);
         mensajePanel.add(mensaje);
 
         // Agregar el panel del mensaje al panel principal
@@ -465,18 +465,18 @@ public class PantallaGenerarRankingP {
         // Botón "Sí"
         JButton btnSi = new JButton("Sí");
         btnSi.setFont(pantalla.fuenteGrande);
-        btnSi.setBackground(new Color(102, 178, 255)); // Color de fondo azul
-        btnSi.setForeground(Color.WHITE); // Color del texto blanco
-        btnSi.setPreferredSize(new Dimension(150, 40)); // Tamaño fijo para los botones
-        btnSi.setFocusPainted(false); // Quitar borde de selección
-        btnSi.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20)); // Bordes internos
-        btnSi.setCursor(new Cursor(Cursor.HAND_CURSOR)); // Cambiar cursor al pasar el mouse
+        btnSi.setBackground(new Color(34, 139, 34));
+        btnSi.setForeground(Color.WHITE);
+        btnSi.setPreferredSize(new Dimension(150, 40));
+        btnSi.setFocusPainted(false);
+        btnSi.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        btnSi.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnSi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnSi.setBackground(new Color(153, 204, 255)); // Efecto al pasar el mouse
+                btnSi.setBackground(new Color(60, 179, 113));
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnSi.setBackground(new Color(102, 178, 255)); // Vuelve al color original
+                btnSi.setBackground(new Color(34, 139, 34));
             }
         });
         btnSi.addActionListener(new ActionListener() {
@@ -489,42 +489,42 @@ public class PantallaGenerarRankingP {
         // Botón "No"
         JButton btnNo = new JButton("No");
         btnNo.setFont(pantalla.fuenteGrande);
-        btnNo.setBackground(new Color(255, 102, 102)); // Color de fondo rojo
-        btnNo.setForeground(Color.WHITE); // Color del texto blanco
-        btnNo.setPreferredSize(new Dimension(150, 40)); // Tamaño fijo para los botones
-        btnNo.setFocusPainted(false); // Quitar borde de selección
-        btnNo.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20)); // Bordes internos
-        btnNo.setCursor(new Cursor(Cursor.HAND_CURSOR)); // Cambiar cursor al pasar el mouse
+        btnNo.setBackground(new Color(255, 102, 102));
+        btnNo.setForeground(Color.WHITE);
+        btnNo.setPreferredSize(new Dimension(150, 40));
+        btnNo.setFocusPainted(false);
+        btnNo.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        btnNo.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnNo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnNo.setBackground(new Color(255, 153, 153)); // Efecto al pasar el mouse
+                btnNo.setBackground(new Color(255, 153, 153));
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnNo.setBackground(new Color(255, 102, 102)); // Vuelve al color original
+                btnNo.setBackground(new Color(255, 102, 102));
             }
         });
         btnNo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                pantalla.ventana.dispose(); // Cierra la ventana si se presiona No
+                pantalla.ventana.dispose();
             }
         });
 
         // Botón "Volver"
         JButton btnVolver = new JButton("Volver");
         btnVolver.setFont(pantalla.fuenteGrande);
-        btnVolver.setBackground(new Color(34, 139, 34)); // Color de fondo verde
-        btnVolver.setForeground(Color.WHITE); // Color del texto blanco
-        btnVolver.setPreferredSize(new Dimension(150, 40)); // Tamaño fijo para los botones
-        btnVolver.setFocusPainted(false); // Quitar borde de selección
-        btnVolver.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20)); // Bordes internos
-        btnVolver.setCursor(new Cursor(Cursor.HAND_CURSOR)); // Cambiar cursor al pasar el mouse
+        btnVolver.setBackground(new Color(102, 178, 255));
+        btnVolver.setForeground(Color.WHITE);
+        btnVolver.setPreferredSize(new Dimension(150, 40));
+        btnVolver.setFocusPainted(false);
+        btnVolver.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        btnVolver.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnVolver.setBackground(new Color(60, 179, 113)); // Efecto al pasar el mouse
+                btnVolver.setBackground(new Color(153, 204, 255));
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnVolver.setBackground(new Color(34, 139, 34)); // Vuelve al color original
+                btnVolver.setBackground(new Color(102, 178, 255));
             }
         });
         btnVolver.addActionListener(new ActionListener() {
@@ -538,7 +538,7 @@ public class PantallaGenerarRankingP {
         botonesPanel.add(btnSi);
         botonesPanel.add(btnNo);
         botonesPanel.add(btnVolver);
-        panel.add(botonesPanel, BorderLayout.SOUTH); // Botones al fondo
+        panel.add(botonesPanel, BorderLayout.SOUTH);
 
         // Configuración final del contenedor y la ventana
         Container contenedor = pantalla.ventana.getContentPane();
@@ -546,9 +546,9 @@ public class PantallaGenerarRankingP {
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 0; // Ajustado para que el panel se muestre en la parte superior
-        gbc.anchor = GridBagConstraints.CENTER; // Centra el panel
-        gbc.insets = new Insets(100, 0, -60, 0); // Ajustar el espaciado para que esté centrado en la ventana
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.insets = new Insets(100, 0, -60, 0);
 
         contenedor.add(panel, gbc);
         pantalla.ventana.setVisible(true);
@@ -603,7 +603,7 @@ public class PantallaGenerarRankingP {
             g2.setColor(backgroundColor);
             g2.fillRoundRect(0, 0, getWidth(), getHeight(), cornerRadius, cornerRadius);
 
-            g2.setColor(new Color(200, 200, 200)); // Borde gris claro
+            g2.setColor(new Color(200, 200, 200));
             g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, cornerRadius, cornerRadius);
         }
     }
