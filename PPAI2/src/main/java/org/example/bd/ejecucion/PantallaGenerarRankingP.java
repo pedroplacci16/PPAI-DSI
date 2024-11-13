@@ -26,7 +26,7 @@ public class PantallaGenerarRankingP {
         dateChooserDesde = new JDateChooser();
         dateChooserHasta = new JDateChooser();
 
-        JLabel fondo = new JLabel(new ImageIcon("C:\\Users\\juanp\\IdeaProjects\\PPAI-DSI\\PPAI2\\src\\main\\java\\imagen\\FondoBonVino.png"));
+        JLabel fondo = new JLabel(new ImageIcon("/home/pedro/Desktop/PPAI-DSI/PPAI-ULTIMAVERSION/PPAI-DSI/PPAI2/src/main/java/imagen/FondoBonVino.png"));
         ventana.setContentPane(fondo);
         fondo.setLayout(new FlowLayout());
 
