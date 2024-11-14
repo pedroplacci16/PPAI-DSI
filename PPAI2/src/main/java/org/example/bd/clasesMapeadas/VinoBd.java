@@ -172,21 +172,6 @@ public double tenesPuntajeSommelierEnPeriodo(Date fechaDesde, Date fechaHasta) {
         }
         return sum / puntajes.size();
     }
-
-//    public boolean tenesResenaEnPeriodo(Date fechaDesde, Date fechaHasta) {
-//        if (resena == null || resena.isEmpty()) {
-//            return false; //no hay resenas
-//        }
-//
-//        for (ResenaBd resena : resena) {
-//            if (resena.sosDePeriodo(fechaDesde, fechaHasta)) {
-//                if(resena.sosSommelierVerificado()) {
-//                    return true;//si hay resenas en periodo y son de sommelier
-//                }
-//            }
-//        }
-//        return false; // no hay resenas en periodo
-//    }
     public boolean tenesResenaEnPeriodo(Date fechaDesde, Date fechaHasta) {
         if (resena == null || resena.isEmpty()) {
             return false; //no hay resenas

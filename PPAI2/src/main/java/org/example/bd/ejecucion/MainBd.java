@@ -1,6 +1,6 @@
 package org.example.bd.ejecucion;
 
-public class PruebaEjecucion {
+public class MainBd {
     public static void main(String[] args) {
         ManejoBd bd = new ManejoBd();
         bd.eliminarTodoDeBd();

@@ -17,7 +17,7 @@ public class PantallaGenerarRankingP {
 
     public PantallaGenerarRankingP() {
         ventana = new JFrame("Mi Ventana Simple");
-        ventana.setSize(600, 400);
+        ventana.setSize(900, 600);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setLayout(new FlowLayout());
 
@@ -67,7 +67,7 @@ public class PantallaGenerarRankingP {
         // Panel principal con esquinas redondeadas y tamaño ajustado
         JPanel panel = new RoundedPanel(30, new Color(245, 245, 245));
         panel.setLayout(new BorderLayout());
-        panel.setPreferredSize(new Dimension(400, 200));
+        panel.setPreferredSize(new Dimension(600, 220));
         panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         // Panel interno para etiquetas y selectores de fecha (alineación horizontal)
@@ -183,7 +183,7 @@ public class PantallaGenerarRankingP {
         // Panel principal con esquinas redondeadas y tamaño ajustado
         JPanel panel = new RoundedPanel(30, new Color(245, 245, 245));
         panel.setLayout(new BorderLayout());
-        panel.setPreferredSize(new Dimension(600, 200));
+        panel.setPreferredSize(new Dimension(800, 200));
         panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         // Panel interno para etiquetas y JComboBox (alineación horizontal)
@@ -313,7 +313,7 @@ public class PantallaGenerarRankingP {
         // Panel principal con esquinas redondeadas y tamaño ajustado
         JPanel panel = new RoundedPanel(30, new Color(245, 245, 245));
         panel.setLayout(new BorderLayout());
-        panel.setPreferredSize(new Dimension(600, 200));
+        panel.setPreferredSize(new Dimension(800, 200));
         panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         // Panel interno para etiquetas y JComboBox (alineación horizontal)
